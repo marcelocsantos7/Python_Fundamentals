@@ -10,6 +10,7 @@ class Conta:
     def depositar(self, valor):
         self.saldo += valor
         print(f"Saldo disponivel apos o deposito de $ {valor}: ${self.saldo} ")
+        oldbank(self.titular)
 
     def sacar(self, valor):
         if self.saldo > valor:
@@ -17,13 +18,14 @@ class Conta:
             print(f"Saldo disponivel apos o saque de $ {valor}: ${self.saldo} ")
         else:
             print('Saldo insuficiente')
-
+        
 
     def extrato(self):
         print(f"Banco: {self.banco}")
         print(f"Agência: {self.agencia}")
         print(f"Nome do Cliente: {self.titular}")
         print(f"Saldo disponível: {self.saldo}")
+        oldbank(self.titular)
 
 
 def oldbank(cliente):
@@ -33,10 +35,14 @@ def oldbank(cliente):
     print('Para extrato, digite 1')
     print('Para saque digite 2')
     print('Para deposito, digite 3')
+    print('Opção 0 para encerrar')
 
     escolha = int(input(">> "))
 
-    if escolha == 1:
+    if escolha == 0:
+        print("Seção encerrada")
+        exit()
+    elif escolha == 1:
         cliente.extrato()
     elif escolha == 2:
         valor = float(input("Informe o valor do saque: $"))
